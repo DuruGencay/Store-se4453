@@ -9,6 +9,27 @@ app = Flask(__name__)
 
 connection = get_sql_connection()
 
+def hello():
+    try:
+        # PostgreSQL'e bağlan
+        connection = psycopg2.connect(
+    user="postgres",
+        password="Burçak",
+        host="localhost",
+        port="5432",
+        database="grocery_store"
+        )
+        cursor = connection.cursor()
+        cursor.execute("SELECT 'Hello, World!' AS message;")
+        result = cursor.fetchone()
+        message = result[0] if result else "No message"
+        cursor.close()
+        connection.close()
+        return jsonify({"message": message}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 @app.route('/musicstore-as.git', methods=['GET'])
 def musicstore_git():
     return "Musicstore route is working!"
