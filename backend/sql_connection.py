@@ -7,22 +7,14 @@ __cnx = None
 from azure.identity import ClientSecretCredential
 from azure.keyvault.secrets import SecretClient
 
-tenant_id = "<TENANT_ID>"
-client_id = "<CLIENT_ID>"
-client_secret = "<CLIENT_SECRET>"
 key_vault_url = "https://musicstore-keyvault.vault.azure.net/"
 
 credential = ClientSecretCredential(tenant_id, client_id, client_secret)
 client = SecretClient(vault_url=key_vault_url, credential=credential)
 
-secret_name = "your-secret-name"
-secret_value = client.get_secret(secret_name)
+secret_name = "duru-secret"
+secret_value = client.get_secret(duru-secret)
 print(f"Secret value: {secret_value.value}")
-
-
-
-
-
 
 
 try:
