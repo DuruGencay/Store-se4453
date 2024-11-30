@@ -16,6 +16,10 @@ secret_name = "duru-secret"
 secret_value = client.get_secret(duru-secret)
 print(f"Secret value: {secret_value.value}")
 
+secret_name = "duru-username"
+secret_value = client.get_secret(duru-username)
+print(f"Secret value: {secret_value.value}")
+
 
 try:
     # Bağlantı oluşturma
