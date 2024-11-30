@@ -4,8 +4,15 @@ import json
 import products_dao
 import orders_dao
 import uom_dao
+from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
+
+# PostgreSQL bağlantı dizesi
+app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('PGUSER')}:{os.getenv('PGPASSWORD')}@{os.getenv('PGHOST')}:{os.getenv('PGPORT')}/{os.getenv('PGDATABASE')}"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
 connection = get_sql_connection()
 
