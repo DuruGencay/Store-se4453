@@ -44,6 +44,33 @@ finally:
     if 'connection' in locals() and connection:
         connection.close()
         print("PostgreSQL bağlantısı kapatıldı.")
+
+
+import os
+import psycopg2
+
+# Çevresel değişkenlerden PostgreSQL bilgilerini al
+PGHOST = os.getenv("PGHOST")
+PGUSER = os.getenv("PGUSER")
+PGPORT = os.getenv("PGPORT")
+PGDATABASE = os.getenv("PGDATABASE")
+PGPASSWORD = os.getenv("PGPASSWORD")
+
+# PostgreSQL'e bağlan
+try:
+    connection = psycopg2.connect(
+        host=PGHOST,
+        user=PGUSER,
+        port=PGPORT,
+        database=PGDATABASE,
+        password=PGPASSWORD
+    )
+    print("PostgreSQL bağlantısı başarılı!")
+except Exception as e:
+    print("Bağlantı hatası:", e)
+
+
+
 def get_sql_connection():
     global __cnx
 
